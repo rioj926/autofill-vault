@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Autofill Vault</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header>
+    <h1>Autofill Vault</h1>
+    <p class="subtitle">Saved info you can drag or click onto any form.</p>
+  </header>
+
+  <section id="add-form">
+    <input type="text" id="label" placeholder="Label (e.g. Personal Email)" />
+    <input type="text" id="value" placeholder="Value" />
+    <label class="checkbox-row">
+      <input type="checkbox" id="sensitive" />
+      Sensitive (encrypt with passcode) — use for card numbers, IDs, etc.
+    </label>
+    <button id="add-btn">+ Add Item</button>
+  </section>
+
+  <section id="passcode-section" class="hidden"></section>
+
+  <section id="items-list"></section>
+
+  <footer>
+    <span id="status"></span>
+  </footer>
+
+  <script src="crypto.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

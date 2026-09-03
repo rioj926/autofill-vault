@@ -1,0 +1,108 @@
+/* :where() has zero specificity, so this reset can never outrank any of
+   our own component rules below (even plain class selectors), regardless
+   of source order. Using a plain ID/class selector here was the original
+   bug — ID beats class in specificity, so .vault-chip styling was always
+   losing to this reset no matter what order the rules were written in. */
+:where(#vault-root, #vault-root *) {
+  all: revert;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+#vault-root {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 2147483647 !important;
+}
+
+#vault-toggle {
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  background: #2f6fed !important;
+  color: white !important;
+  font-size: 18px !important;
+  line-height: 42px !important;
+  text-align: center !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25) !important;
+  display: block !important;
+}
+
+#vault-toggle:hover {
+  background: #2559c7 !important;
+}
+
+#vault-panel {
+  position: absolute !important;
+  bottom: 52px !important;
+  right: 0 !important;
+  width: 240px !important;
+  background: white !important;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 10px !important;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.18) !important;
+  padding: 10px !important;
+}
+
+/* Combining the ID with .vault-hidden raises this rule's specificity
+   above the plain #vault-panel rule above, so it can actually win and
+   hide the panel — a bare .vault-hidden class rule would lose to any
+   !important ID-selector rule targeting the same element. */
+#vault-panel.vault-hidden {
+  display: none !important;
+}
+
+.vault-hidden {
+  display: none !important;
+}
+
+#vault-panel-header {
+  display: flex !important;
+  align-items: center !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  margin-bottom: 8px !important;
+  color: #1a1a1a !important;
+}
+
+#vault-chip-list {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+}
+
+.vault-chip {
+  display: inline-block !important;
+  background: #f0f4ff !important;
+  border: 1px solid #cddaff !important;
+  color: #1f3f9e !important;
+  font-size: 11px !important;
+  line-height: normal !important;
+  padding: 5px 9px !important;
+  border-radius: 14px !important;
+  cursor: grab !important;
+  user-select: none !important;
+  -webkit-user-drag: element !important;
+}
+
+.vault-chip:active {
+  cursor: grabbing !important;
+}
+
+.vault-chip:hover {
+  background: #e3ebff !important;
+}
+
+#vault-empty {
+  font-size: 11px !important;
+  color: #888 !important;
+}
+
+.vault-drop-target {
+  outline: 2px dashed #2f6fed !important;
+  outline-offset: 2px !important;
+}

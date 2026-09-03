@@ -1,0 +1,157 @@
+html, body {
+  width: 320px !important;
+  max-width: 320px !important;
+  min-width: 320px !important;
+  margin: 0 !important;
+  overflow-x: hidden !important;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  padding: 14px;
+  background: #fafafa;
+  color: #1a1a1a;
+}
+
+header h1 {
+  font-size: 16px;
+  margin: 0 0 2px 0;
+}
+
+.subtitle {
+  font-size: 11px;
+  color: #777;
+  margin: 0 0 12px 0;
+}
+
+#add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+  background: #fff;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 7px 8px;
+  border: 1px solid #d5d5d5;
+  border-radius: 6px;
+  font-size: 12px;
+  width: 100%;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #555;
+}
+
+button {
+  background: #2f6fed;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #2559c7;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#passcode-section {
+  background: #fff8e6;
+  border: 1px solid #f0deab;
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 12px;
+}
+
+.hint {
+  font-size: 10.5px;
+  color: #7a6215;
+  margin: 0 0 6px 0;
+}
+
+#items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border: 1px solid #e2e2e2;
+  border-radius: 6px;
+  padding: 7px 9px;
+  cursor: grab;
+}
+
+.item:active {
+  cursor: grabbing;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.item-label {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.item-value {
+  font-size: 10.5px;
+  color: #888;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 190px;
+}
+
+.lock-badge {
+  font-size: 9px;
+  background: #fdeeda;
+  color: #a15c00;
+  border-radius: 4px;
+  padding: 1px 5px;
+  margin-left: 5px;
+}
+
+.remove-btn {
+  background: none;
+  color: #c0392b;
+  padding: 2px 6px;
+  font-size: 13px;
+}
+
+.remove-btn:hover {
+  background: #fbe4e2;
+}
+
+footer {
+  margin-top: 8px;
+  font-size: 10px;
+  color: #888;
+  min-height: 12px;
+}
