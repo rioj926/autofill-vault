@@ -12,13 +12,18 @@
 <body>
   <h2>Autofill Vault — Test Page</h2>
   <p>Open this file directly in Chrome (drag it into a tab, or File → Open File),
-     click the 🔐 button in the bottom-right, and try dragging a chip onto a
+     hover the 🔐 button in the bottom-right, and try dragging a chip onto a
      field below, or clicking a field then clicking a chip.</p>
+  <p>To test <strong>smart suggestions</strong>: save an item labeled
+     "Phone Number" and click into the "Mobile" field below — it should jump
+     to the top of the panel with a gold highlight and a ★, even though the
+     field's own name ("tel"/"mobile") doesn't literally match the label.</p>
 
   <label>Full Name <input type="text" name="fullname" /></label>
   <label>Email <input type="email" name="email" /></label>
-  <label>Phone <input type="tel" name="phone" /></label>
+  <label>Mobile <input type="tel" name="tel" placeholder="Mobile number" /></label>
   <label>Address <input type="text" name="address" /></label>
-  <label>Card Number <input type="text" name="card" /></label>
+  <label>Postal Code <input type="text" name="postal" /></label>
+  <label>Credit Card <input type="text" id="cc-number" /></label>
 </body>
 </html>

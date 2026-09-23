@@ -25,6 +25,22 @@
 
   <section id="items-list"></section>
 
+  <section id="icon-toggle-section">
+    <label class="checkbox-row">
+      <input type="checkbox" id="icon-enabled" checked />
+      Show floating icon on pages (drag it to move, right-click to hide on a single page)
+    </label>
+  </section>
+
+  <section id="backup-section">
+    <p class="hint hint-plain">Back up your saved items to a file, or bring them into a new browser.</p>
+    <div class="backup-buttons">
+      <button id="export-btn" type="button">Export</button>
+      <button id="import-btn" type="button">Import</button>
+    </div>
+    <input type="file" id="import-file" accept="application/json" class="hidden" />
+  </section>
+
   <footer>
     <span id="status"></span>
   </footer>

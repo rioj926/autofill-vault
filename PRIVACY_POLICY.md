@@ -1,6 +1,6 @@
 # Privacy Policy — Autofill Vault
 
-_Last updated: [DATE]_
+_Last updated: September 22, 2026_
 
 ## What this extension does
 
@@ -28,6 +28,11 @@ browser profile. This data:
 
 If you uninstall the extension, this locally stored data is removed by
 Chrome along with it.
+
+The extension also lets you export your saved items to a file, or import
+them back in. An export is written directly to your own computer through
+your browser's normal file-download flow — it is not uploaded or sent
+anywhere, and Autofill Vault's developer never receives a copy.
 
 ## Sensitive data encryption
 
@@ -60,4 +65,4 @@ listing.
 
 ## Contact
 
-Questions about this policy can be directed to: [YOUR EMAIL]
+Questions about this policy can be directed to: riojbusiness926@gmail.com

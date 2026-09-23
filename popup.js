@@ -149,3 +149,99 @@ document.getElementById("add-btn").addEventListener("click", async () => {
 
 renderPasscodeSection();
 render();
+
+// ---- Floating icon on/off toggle ----
+const iconEnabledInput = document.getElementById("icon-enabled");
+
+(async () => {
+  const { vaultIconEnabled = true } = await chrome.storage.local.get("vaultIconEnabled");
+  iconEnabledInput.checked = vaultIconEnabled;
+})();
+
+iconEnabledInput.addEventListener("change", async () => {
+  await chrome.storage.local.set({ vaultIconEnabled: iconEnabledInput.checked });
+  setStatus("Saved — refresh open tabs for this to take effect");
+});
+
+// ---- Export / Import ----
+// Export writes exactly what's in storage, including sensitive items'
+// still-encrypted blobs — they stay useless without the original passcode,
+// so it's safe to include them in a plain JSON file.
+document.getElementById("export-btn").addEventListener("click", async () => {
+  const items = await getItems();
+  if (items.length === 0) {
+    setStatus("Nothing to export yet");
+    return;
+  }
+
+  const payload = {
+    exportedFrom: "Autofill Vault",
+    exportVersion: 1,
+    exportedAt: new Date().toISOString(),
+    items
+  };
+
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `autofill-vault-export-${new Date().toISOString().slice(0, 10)}.json`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+  setStatus(`Exported ${items.length} item(s)`);
+});
+
+const importFileInput = document.getElementById("import-file");
+
+document.getElementById("import-btn").addEventListener("click", () => {
+  importFileInput.click();
+});
+
+importFileInput.addEventListener("change", async e => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  try {
+    const text = await file.text();
+    const parsed = JSON.parse(text);
+
+    if (!parsed || !Array.isArray(parsed.items)) {
+      setStatus("That doesn't look like an Autofill Vault export file");
+      return;
+    }
+
+    const existing = await getItems();
+    const importCount = parsed.items.length;
+
+    const proceed = confirm(
+      `Import ${importCount} item(s)? They'll be added alongside your existing ` +
+      `${existing.length} item(s) — duplicates aren't merged automatically, so check ` +
+      `for repeats afterward. Sensitive items stay encrypted and need their ORIGINAL ` +
+      `passcode to unlock (the one used when they were first saved).`
+    );
+    if (!proceed) {
+      e.target.value = "";
+      return;
+    }
+
+    // New random IDs, so an imported item can never collide with (or
+    // silently overwrite) something already saved on this device.
+    const newItems = parsed.items.map(item => ({
+      id: crypto.randomUUID(),
+      label: String(item.label || "Untitled"),
+      value: String(item.value ?? ""),
+      sensitive: Boolean(item.sensitive)
+    }));
+
+    await saveItems([...existing, ...newItems]);
+    render();
+    setStatus(`Imported ${newItems.length} item(s)`);
+  } catch (err) {
+    console.error("[Autofill Vault] import failed", err);
+    setStatus("Couldn't read that file — is it a valid export?");
+  } finally {
+    e.target.value = ""; // allow re-selecting the same file later if needed
+  }
+});

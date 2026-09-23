@@ -11,9 +11,11 @@
 
 #vault-root {
   position: fixed !important;
-  bottom: 20px !important;
-  right: 20px !important;
   z-index: 2147483647 !important;
+  /* bottom/right are intentionally NOT !important here — content.js sets
+     them inline per-page based on saved drag position, and !important on
+     the stylesheet rule would block that from taking effect. A default of
+     20px/20px is set inline at creation time as a fallback. */
 }
 
 #vault-toggle {
@@ -27,9 +29,13 @@
   line-height: 42px !important;
   text-align: center !important;
   padding: 0 !important;
-  cursor: pointer !important;
+  cursor: grab !important;
   box-shadow: 0 2px 8px rgba(0,0,0,0.25) !important;
   display: block !important;
+}
+
+#vault-toggle:active {
+  cursor: grabbing !important;
 }
 
 #vault-toggle:hover {
@@ -95,6 +101,20 @@
 
 .vault-chip:hover {
   background: #e3ebff !important;
+}
+
+/* Highlights the chip Autofill Vault thinks best matches the field you're
+   currently focused on. It's only ever a suggestion — filling still takes
+   an explicit drag or click. */
+.vault-chip-suggested {
+  background: #fff8e6 !important;
+  border-color: #f0b429 !important;
+  box-shadow: 0 0 0 1px #f0b429 inset !important;
+  font-weight: 600 !important;
+}
+
+.vault-chip-suggested:hover {
+  background: #fef0c7 !important;
 }
 
 #vault-empty {

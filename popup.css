@@ -149,6 +149,39 @@ button:hover {
   background: #fbe4e2;
 }
 
+#icon-toggle-section {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #e2e2e2;
+}
+
+#backup-section {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #e2e2e2;
+}
+
+.hint-plain {
+  color: #888;
+  margin: 0 0 8px 0;
+}
+
+.backup-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.backup-buttons button {
+  flex: 1;
+  background: #fff;
+  color: #2f6fed;
+  border: 1px solid #cddaff;
+}
+
+.backup-buttons button:hover {
+  background: #f0f4ff;
+}
+
 footer {
   margin-top: 8px;
   font-size: 10px;
